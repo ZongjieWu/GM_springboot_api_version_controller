@@ -77,7 +77,7 @@ public class SaasUserLoginiServiceImpl extends ServiceImpl<SaasUserMapper, SaasU
         //86400000是过期时间  24小时
         String jwt=null;
         try {
-           jwt = JWTUtils.createJWT("jwt", userSaasRes.getPhone(), 120000,payload);
+           jwt = JWTUtils.createJWT("jwt", userSaasRes.getPhone(), 900000,payload);
         } catch (Exception e) {
             e.printStackTrace();
         }

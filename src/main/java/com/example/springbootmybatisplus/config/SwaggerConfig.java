@@ -25,11 +25,27 @@ public class SwaggerConfig {
 
         //用户设置局部token 方式1 //已用下面方式2更通用
         ParameterBuilder ticketPar = new ParameterBuilder();
+        ParameterBuilder timestampPar = new ParameterBuilder();
+        ParameterBuilder noncePar = new ParameterBuilder();
+        ParameterBuilder signPar= new ParameterBuilder();
         List<Parameter> pars = new ArrayList<Parameter>();
         ticketPar.name("version").description("版本号")
                 .modelRef(new ModelRef("string")).parameterType("path")
+                .required(true).build(); //header中的ticket参数非必填，传空也可以
+        timestampPar.name("timestamp").description("时间戳")
+                .modelRef(new ModelRef("int")).parameterType("query")
                 .required(false).build(); //header中的ticket参数非必填，传空也可以
+        noncePar.name("nonce").description("随机字符串(请求id)")
+                .modelRef(new ModelRef("string")).parameterType("query")
+                .required(false).build(); //header中的ticket参数非必填，传空也可以
+        signPar.name("sign").description("签名")
+                .modelRef(new ModelRef("string")).parameterType("query")
+                .required(false).build(); //header中的ticket参数非必填，传空也可以
+
         pars.add(ticketPar.build());    //根据每个方法名也知道当前方法在设置什么参数
+        pars.add(timestampPar.build());    //根据每个方法名也知道当前方法在设置什么参数
+        pars.add(noncePar.build());    //根据每个方法名也知道当前方法在设置什么参数
+        pars.add(signPar.build());    //根据每个方法名也知道当前方法在设置什么参数
 
 
         return new Docket(DocumentationType.SWAGGER_2)
@@ -68,8 +84,12 @@ public class SwaggerConfig {
      **/
     private List<ApiKey> securitySchemes() {
 
-        return new ArrayList(
-                Collections.singleton(new ApiKey("Authorization", "token", "header")));
+//        return new ArrayList(
+//                Collections.singleton(new ApiKey("Authorization", "token", "header"))
+//        );
+       List<ApiKey> apiKeyList=new ArrayList<>();
+       apiKeyList.add(new ApiKey("Authorization", "token", "header"));
+       return apiKeyList;
     }
     private List<SecurityContext> securityContexts() {
         return new ArrayList(

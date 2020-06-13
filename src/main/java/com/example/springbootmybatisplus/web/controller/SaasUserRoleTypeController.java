@@ -6,14 +6,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springbootmybatisplus.aop.role.SocketRole;
-import com.example.springbootmybatisplus.config.apiconfig.ApiVersion;
+import com.example.springbootmybatisplus.config.apiversionconfig.ApiVersion;
 import com.example.springbootmybatisplus.enums.Result;
 import com.example.springbootmybatisplus.model.SaasUserRolePermission;
 import com.example.springbootmybatisplus.model.SaasUserRoleType;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.role.SaasUserRoleTypeAddRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.role.SaasUserRoleTypePagingRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.role.SaasUserRoleTypeUpdateRequestVo;
-import com.example.springbootmybatisplus.model.vo.response.SaasUserBaseInfoResponseVo;
 import com.example.springbootmybatisplus.service.ISaasUserRolePermissionService;
 import com.example.springbootmybatisplus.service.ISaasUserRoleTypeService;
 import com.example.springbootmybatisplus.util.BeanCopyTools;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,7 +83,7 @@ public class SaasUserRoleTypeController {
     }
 
 //    @ApiIgnore
-//    @SocketRole(value = "detail_saasUserRoleType")
+//    @OpenAppApiCheck(value = "detail_saasUserRoleType")
 //    @GetMapping("detail")
 //    public Result<SaasUserRoleType> detail(@RequestParam Long id) {
 //        SaasUserRoleType saasUserRoleType = saasUserRoleTypeService.findById(id);
@@ -93,7 +91,7 @@ public class SaasUserRoleTypeController {
 //    }
 
     @ApiOperation(value = "获取角色列表",notes = "获取角色列表")
-//    @SocketRole(value = "list_saasUserRoleType")
+//    @OpenAppApiCheck(value = "list_saasUserRoleType")
     @GetMapping("list")
     public Result<List<SaasUserRoleType>> list() {
         List<SaasUserRoleType> saasUserRoleType = saasUserRoleTypeService.list();
@@ -101,7 +99,7 @@ public class SaasUserRoleTypeController {
     }
 
     @ApiIgnore
-//    @SocketRole(value = "pageing_saasUserRoleType")
+//    @OpenAppApiCheck(value = "pageing_saasUserRoleType")
     @PostMapping("paging")
     public Result<List<SaasUserRoleType>> paging(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer limit,@Validated SaasUserRoleTypePagingRequestVo saasUserRoleTypePagingRequestVo) {
         IPage<SaasUserRoleType> saasUserRoleTypeIPage = new Page<>(page, limit);//参数一是当前页，参数二是每页个数

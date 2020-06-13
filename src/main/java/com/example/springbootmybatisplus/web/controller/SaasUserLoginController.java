@@ -1,6 +1,6 @@
 package com.example.springbootmybatisplus.web.controller;
 
-import com.example.springbootmybatisplus.config.apiconfig.ApiVersion;
+import com.example.springbootmybatisplus.config.apiversionconfig.ApiVersion;
 import com.example.springbootmybatisplus.enums.Result;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.user.SaasUserLoginRequestVo;
 import com.example.springbootmybatisplus.model.vo.response.SaasUserBaseInfoResponseVo;

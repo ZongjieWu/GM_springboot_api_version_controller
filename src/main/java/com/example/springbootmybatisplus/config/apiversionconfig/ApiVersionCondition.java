@@ -1,4 +1,4 @@
-package com.example.springbootmybatisplus.config.apiconfig;
+package com.example.springbootmybatisplus.config.apiversionconfig;
 
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 

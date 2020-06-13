@@ -1,10 +1,11 @@
-package com.example.springbootmybatisplus.web.controller;
+package com.example.springbootmybatisplus.web.controller.openapi.app;
 
 
-import com.example.springbootmybatisplus.aop.role.SocketRole;
+import com.example.springbootmybatisplus.aop.openapicheck.OpenAppApiCheck;
 import com.example.springbootmybatisplus.config.apiversionconfig.ApiVersion;
 import com.example.springbootmybatisplus.enums.Result;
 import com.example.springbootmybatisplus.model.SaasUser;
+import com.example.springbootmybatisplus.model.vo.request.saasuser.user.SaasUserAddRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.user.SaasUserPagingRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.user.SaasUserUpdateRequestVo;
 import com.example.springbootmybatisplus.model.vo.response.SaasUserBaseInfoResponseVo;
@@ -33,24 +34,25 @@ import static com.example.springbootmybatisplus.service.impl.SaasUserLoginiServi
  * @author ZongjieWu
  * @since 2020-04-19
  */
-@Api(tags = "2.平台管理员",description = "添加、修改、删除、查询等接口")
+@Api(tags = "6.开放接口平台管理员",description = "添加、修改、删除、查询等接口")
 @RestController
 @ApiVersion(1)
-@RequestMapping("/{version}/saasUser")
-public class SaasUserController {
+@RequestMapping("/openapi/{version}/saasUser")
+public class SaasUserAppController {
     @Autowired
     private ISaasUserService saasUserService;
 
+    @OpenAppApiCheck()
     @GetMapping("/detail")
-    public SaasUser detail(Long id){
-        return saasUserService.getById(id);
+    public Result<SaasUser> detail(Long id){
+        return Result.retrunSucessMsgData(saasUserService.getById(id));
     }
 
 
     @ApiOperation(value = "管理员添加",notes = "管理员添加")
-    @SocketRole(value = "add_saasUser")
+    @OpenAppApiCheck()
     @PostMapping("/add")
-    public Result add(@Validated SaasUser saasUserAddRequestVo) {
+    public Result add(@Validated SaasUserAddRequestVo saasUserAddRequestVo) {
         SaasUser saasUser=BeanCopyTools.copy(saasUserAddRequestVo,SaasUser.class);
         saasUser.setPwd(MD5Util.getMD5(AESUtil.encode(saasUser.getPwd(), AES_KEY)));
         saasUser.setAddTime(new Date());
@@ -61,7 +63,7 @@ public class SaasUserController {
 
     @ApiOperation(value = "管理员删除",notes = "管理员删除")
     @ApiImplicitParam(paramType = "query",name = "id",value = "管理员表id",required = true,dataType = "int")
-    @SocketRole(value = "delete_saasUser")
+    @OpenAppApiCheck()
     @PostMapping("delete")
     public Result delete(@RequestParam Long id) {
         saasUserService.removeById(id);
@@ -69,7 +71,7 @@ public class SaasUserController {
     }
 
     @ApiOperation(value = "管理员修改",notes = "管理员修改")
-    @SocketRole(value = "update_saasUser")
+    @OpenAppApiCheck()
     @PostMapping("update")
     public Result update(@Validated SaasUserUpdateRequestVo saasUserUpdateRequestVo) {
         SaasUser saasUser=BeanCopyTools.copy(saasUserUpdateRequestVo,SaasUser.class);
@@ -81,7 +83,7 @@ public class SaasUserController {
         return Result.retrunSucess();
     }
 
-    //    @OpenAppApiCheck(value = "pageing_saasUser")
+    @OpenAppApiCheck()
     @ApiOperation(value = "分页查询管理员",notes = "分页查询管理员")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "page", value = "当前页", required = true, dataType = "int"),

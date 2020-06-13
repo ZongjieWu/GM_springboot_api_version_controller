@@ -6,10 +6,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springbootmybatisplus.aop.role.SocketRole;
-import com.example.springbootmybatisplus.config.apiconfig.ApiVersion;
+import com.example.springbootmybatisplus.config.apiversionconfig.ApiVersion;
 import com.example.springbootmybatisplus.enums.Result;
 import com.example.springbootmybatisplus.model.SaasUserPermissionList;
-import com.example.springbootmybatisplus.model.SaasUserRoleType;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.permission.SaasUserPermissionAddRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.permission.SaasUserPermissionPagingRequestVo;
 import com.example.springbootmybatisplus.model.vo.request.saasuser.permission.SaasUserPermissionUpdateRequestVo;
@@ -88,7 +87,7 @@ public class SaasUserPermissionListController {
         return Result.retrunSucessMsgData(saasUserPermissionList);
     }
 
-    //    @SocketRole(value = "pageing_saasUserPermission")
+    //    @OpenAppApiCheck(value = "pageing_saasUserPermission")
     @ApiOperation(value = "分页查询管理员权限",notes = "分页查询管理员权限")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "page", value = "当前页", required = true, dataType = "int"),

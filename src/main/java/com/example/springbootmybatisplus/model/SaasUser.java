@@ -41,6 +41,30 @@ public class SaasUser implements Serializable {
     private Long saasUserRoleId;
 
     /**
+     * 开放平台的ak(开发者唯一标识)
+     */
+    @TableField("access_key")
+    private String accessKey;
+
+    /**
+     * 开放平台密钥(用于签名,即接口加密)
+     */
+    @TableField("secret_key")
+    private String secretKey;
+
+    /**
+     * 开放平台app(用户唯一标识)
+     */
+    @TableField("token")
+    private String token;
+
+    /**
+     * 开放平台app密钥(用于加密,即接口加密)
+     */
+    @TableField("app_key")
+    private String appKey;
+
+    /**
      * 头像
      */
     @TableField("head_img")

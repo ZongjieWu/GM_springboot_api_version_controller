@@ -1,6 +1,5 @@
-package com.example.springbootmybatisplus.config.apiconfig;
+package com.example.springbootmybatisplus.config.apiversionconfig;
 
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
