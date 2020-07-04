@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>gm_springboot_read_write_isolate</artifactId>
+	<artifactId>versioncontroller</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gm_springboot_read_write_isolate</name>
+	<name>versioncontroller</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "1.平台管理员",description = "登入等接口")
 @RestController
-@ApiVersion(1)
+@ApiVersion(2)
 @RequestMapping("{version}/admin")
 public class SaasUserLoginController {
     @Autowired
@@ -26,4 +26,5 @@ public class SaasUserLoginController {
     public Result<SaasUserBaseInfoResponseVo> add(@Validated SaasUserLoginRequestVo loginRequestVo) {
         return saasUserLoginService.login(loginRequestVo);
     }
+
 }
